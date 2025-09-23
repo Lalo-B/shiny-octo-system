@@ -5,8 +5,10 @@ module.exports = {
     storage: config.dbFile,
     dialect: "sqlite",
     seederStorage: "sequelize",
+    benchmark: true,
     logQueryParameters: true,
-    typeValidation: true
+    typeValidation: true,
+    logging: true
   },
   production: {
     use_env_variable: 'DATABASE_URL',
