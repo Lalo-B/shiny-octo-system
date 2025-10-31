@@ -1,5 +1,7 @@
 'use strict';
 
+const { all } = require("../../routes/api");
+
 let options = {};
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA; // use schema in production
@@ -13,7 +15,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        allowNull: false
+        allowNull: false,
       },
       amount: {
         type: Sequelize.FLOAT,
@@ -37,15 +39,10 @@ module.exports = {
           },
           key: 'id'
         },
-        // which is correct syntax? up or down
-        // references: {
-        //   model: 'Clients', // must match your Clients table
-        //   key: 'id'
-        // },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
-      expense_type: {
+      service_type: {
         type: Sequelize.STRING
       },
       retailer: {
@@ -64,6 +61,22 @@ module.exports = {
       invoiced: {
         type: Sequelize.BOOLEAN,
         defaultValue: false
+      },
+      details: {
+        type: Sequelize.STRING,
+        defaultValue: false,
+      },
+      payment_id: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+          model: {
+            tableName: 'Payments'
+          },
+          key: 'id'
+        },
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE'
       },
       createdAt: {
         type: Sequelize.DATE,

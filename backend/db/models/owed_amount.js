@@ -10,6 +10,13 @@ module.exports = (sequelize, DataTypes) => {
         as: 'client',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
+      }),
+      // each owed amount may belong to a payment
+      Owed_Amount.belongsTo(models.Payment, {
+        foreignKey: 'payment_id',
+        as: 'payment',
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
       });
     }
   }
@@ -37,9 +44,17 @@ module.exports = (sequelize, DataTypes) => {
       },
       client_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: {
+            tableName: 'Clients'
+          },
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
-      expense_type: {
+      service_type: {
         type: DataTypes.STRING
       },
       retailer: {
@@ -58,6 +73,22 @@ module.exports = (sequelize, DataTypes) => {
       invoiced: {
         type: DataTypes.BOOLEAN,
         defaultValue: false
+      },
+      details: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      payment_id: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: {
+          model: {
+            tableName: 'Payments'
+          },
+          key: 'id'
+        },
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE'
       }
     },
     {
