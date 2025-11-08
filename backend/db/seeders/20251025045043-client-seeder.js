@@ -1,27 +1,211 @@
 'use strict';
-
-const { options } = require('../../routes/api');
+const { v4: uuidv4 } = require('uuid'); // Import uuid generator
 
 /** @type {import('sequelize-cli').Migration} */
+
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA; // use schema in production
+}
+options.tableName = 'Clients';
+
 module.exports = {
   async up (queryInterface, Sequelize) {
-    options.tableName = 'Clients';
     await queryInterface.bulkInsert(options, [
       {
-        client_full_name: 'John Doe',
-        client_codes: 'JD123',
-        phone: '555-1234',
+        client_uuid: uuidv4(),
+        client_full_name: 'Alice Johnson',
+        client_codes: 'AJ2025',
+        phone: '555-0101',
+        email: 'alice.johnson@example.com',
+        address: '123 Main St, Anytown, USA',
+        unit_number: 10,
+        role: 'Client',
+        active_project: true,
+        owed_status: 'Pending',
+        needs_session: 'Yes',
+        booking_instructions: 'Prefers morning appointments.',
+        ready_to_invoice: false,
+        pricing_quoted: 'Standard Package - $1500',
+        total_owed: 1500.00,
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
-    
-    ]);
+      {
+        client_uuid: uuidv4(),
+        client_full_name: 'Bob Smith',
+        client_codes: 'BS2025',
+        phone: '555-0102',
+        email: 'bob.smith@example.com',
+        address: '456 Oak Ave, Sometown, USA',
+        unit_number: null,
+        role: 'Client',
+        active_project: false,
+        owed_status: 'Paid',
+        needs_session: 'No',
+        booking_instructions: 'Contact via email only.',
+        ready_to_invoice: true,
+        pricing_quoted: 'Consultation - $250',
+        total_owed: 0.00,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        client_uuid: uuidv4(),
+        client_full_name: 'Charlie Brown',
+        client_codes: 'CB2025',
+        phone: '555-0103',
+        email: 'charlie.brown@example.com',
+        address: '789 Pine Ln, Otherville, USA',
+        unit_number: 3,
+        role: 'Client',
+        active_project: true,
+        owed_status: 'Overdue',
+        needs_session: 'Scheduled',
+        booking_instructions: null,
+        ready_to_invoice: true,
+        pricing_quoted: 'Custom Project - $5000',
+        total_owed: 5000.00,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        client_uuid: uuidv4(),
+        client_full_name: 'Diana Prince',
+        client_codes: 'DP2025',
+        phone: '555-0104',
+        email: 'diana.prince@example.com',
+        address: '101 Maple Dr, Metropolis, USA',
+        unit_number: null,
+        role: 'Client',
+        active_project: false,
+        owed_status: 'Paid',
+        needs_session: 'No',
+        booking_instructions: 'Assistant handles scheduling.',
+        ready_to_invoice: false,
+        pricing_quoted: 'Retainer - $3000',
+        total_owed: 0.00,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        client_uuid: uuidv4(),
+        client_full_name: 'Evan Wright',
+        client_codes: 'EW2025',
+        phone: '555-0105',
+        email: 'evan.wright@example.com',
+        address: '222 Birch Rd, Gotham, USA',
+        unit_number: 20,
+        role: 'Client',
+        active_project: true,
+        owed_status: 'Pending',
+        needs_session: 'Yes',
+        booking_instructions: 'Evening slots preferred.',
+        ready_to_invoice: false,
+        pricing_quoted: 'Basic Package - $800',
+        total_owed: 800.00,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        client_uuid: uuidv4(),
+        client_full_name: 'Fiona Glenanne',
+        client_codes: 'FG2025',
+        phone: '555-0106',
+        email: 'fiona.g@example.com',
+        address: '333 Cedar Pl, Star City, USA',
+        unit_number: null,
+        role: 'Client',
+        active_project: true,
+        owed_status: 'Pending',
+        needs_session: 'No',
+        booking_instructions: null,
+        ready_to_invoice: true,
+        pricing_quoted: 'Hourly - $150/hr',
+        total_owed: 450.00,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        client_uuid: uuidv4(),
+        client_full_name: 'George Kirk',
+        client_codes: 'GK2025',
+        phone: '555-0107',
+        email: 'george.kirk@example.com',
+        address: '444 Elm St, Riverside, USA',
+        unit_number: 1,
+        role: 'Client',
+        active_project: false,
+        owed_status: 'Paid',
+        needs_session: 'No',
+        booking_instructions: 'N/A',
+        ready_to_invoice: false,
+        pricing_quoted: 'One-off - $300',
+        total_owed: 0.00,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        client_uuid: uuidv4(),
+        client_full_name: 'Hannah Abbott',
+        client_codes: 'HA2025',
+        phone: '555-0108',
+        email: 'h.abbott@example.com',
+        address: '555 Willow Way, Hogsmeade, USA',
+        unit_number: null,
+        role: 'Client',
+        active_project: true,
+        owed_status: 'Partial Payment',
+        needs_session: 'Scheduled',
+        booking_instructions: 'Requires 48-hour confirmation.',
+        ready_to_invoice: false,
+        pricing_quoted: 'Full Package - $2200',
+        total_owed: 1100.00,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        client_uuid: uuidv4(),
+        client_full_name: 'Ian Malcolm',
+        client_codes: 'IM2025',
+        phone: '555-0109',
+        email: 'ian.malcolm@example.com',
+        address: '666 Chaos Ave, Isla Nublar, USA',
+        unit_number: 100,
+        role: 'Client',
+        active_project: false,
+        owed_status: 'Disputed',
+        needs_session: 'No',
+        booking_instructions: 'Finds a way.',
+        ready_to_invoice: true,
+        pricing_quoted: 'Appearance Fee - $10000',
+        total_owed: 10000.00,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        client_uuid: uuidv4(),
+        client_full_name: 'Jane Doe',
+        client_codes: 'JD2025',
+        phone: '555-0110',
+        email: 'jane.doe@example.com',
+        address: '777 Mystery Ln, Unknown, USA',
+        unit_number: null,
+        role: 'Client',
+        active_project: false,
+        owed_status: 'N/A',
+        needs_session: 'Yes',
+        booking_instructions: 'Prefers virtual sessions.',
+        ready_to_invoice: false,
+        pricing_quoted: 'TBD',
+        total_owed: 0.00,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+    ], {});
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    await queryInterface.bulkDelete(options, null, {});
   }
 };

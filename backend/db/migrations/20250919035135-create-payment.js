@@ -34,10 +34,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      owed_amounts: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER),
-        allowNull: false,
-      },
       client_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
