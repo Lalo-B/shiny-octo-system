@@ -2,12 +2,13 @@ const express = require('express');
 const router = express.Router();
 const { Client } = require('../../db/models');
 
+//all
 router.get('/all', async (req,res) => {
     const all_clients = await Client.findAll();
-    console.log(all_clients);
     return res.json(all_clients);
 })
 
+//find by pk
 router.get('/:clientId', async (req,res) => {
     const client = await Client.findByPk(req.params.clientId);
     if(!client){
@@ -16,6 +17,7 @@ router.get('/:clientId', async (req,res) => {
     return res.json(client);
 })
 
+//create
 router.post('/create', async (req,res) => {
     const { name, email, phone } = req.body;
     try {
@@ -26,6 +28,7 @@ router.post('/create', async (req,res) => {
     }
 })
 
+//update
 router.put('/:clientId', async (req,res) => {
     const { name, email, phone } = req.body;
     const client = await Client.findByPk(req.params.clientId);
@@ -43,6 +46,7 @@ router.put('/:clientId', async (req,res) => {
     }
 })
 
+//delete
 router.delete('/:clientId', async (req,res) => {
     const client = await Client.findByPk(req.params.clientId);
     if(!client){
