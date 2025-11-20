@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.10.1",
+    "@tailwindcss/vite": "^4.1.17",
     "js-cookie": "^3.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -18,18 +19,19 @@
     "react-router-dom": "^6.30.1",
     "redux": "^5.0.1",
     "redux-batched-subscribe": "^0.1.6",
-    "redux-thunk": "^3.1.0"
+    "redux-thunk": "^3.1.0",
+    "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
-    "@vitejs/plugin-react": "^4.0.3",
-    "eslint": "^8.45.0",
+    "@vitejs/plugin-react": "^5.1.1",
+    "eslint": "^8.57.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "redux-logger": "^3.0.6",
-    "vite": "^4.4.5",
+    "vite": "^7.2.2",
     "vite-plugin-eslint": "^1.8.1"
   }
 }

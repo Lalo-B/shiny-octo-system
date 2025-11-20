@@ -1,23 +1,11 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-// import { batchedSubscribe } from 'redux-batched-subscribe';
 import {createLogger} from 'redux-logger';
+import sessionReducer from './session';
 
 const rootReducer = combineReducers({
   // Add your reducers here
+  session: sessionReducer,
 });
-
-// due to updated syntax using redux toolkit we dont need this bottom code
-// let enhancer;
-// if(import.meta.env.MODE === 'production') {
-//   // enhancer = applyMiddleware(thunk);
-//   // this is auto added with configureStore
-//   //enhancer field must be a callback
-// } else {
-//   const logger = (await import("redux-logger")).default;
-//   //can we use require('redux-logger').default here?
-//   // const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-//   enhancer = composeEnhancers(applyMiddleware(logger));
-// }
 
 
 const store = configureStore({
