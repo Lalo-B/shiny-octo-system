@@ -1,17 +1,17 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import eslint from 'vite-plugin-eslint';
-import tailwindcss from 'tailwindcss';
+import tailwindcss from '@tailwindcss/vite';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
+    tailwindcss(),
     eslint({
       lintOnStart: true,
       failOnError: mode === "production"
     }),
-    tailwindcss(),
   ],
   server: {
     open: true,
